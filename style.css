@@ -1,0 +1,27 @@
+html,body{margin:0;background:#000;color:#bdb0d0;font:12px monospace;text-align:center;-webkit-tap-highlight-color:transparent;overscroll-behavior:none;-webkit-user-select:none;user-select:none}
+canvas{display:block;margin:12px auto 6px;width:min(96vw,calc(88vh*1.6667));image-rendering:pixelated;border:0;background:#000;touch-action:manipulation}
+#ui{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;padding:4px 8px 16px}
+button{background:#1a1226;color:#e8e0f0;border:1px solid #5a4a78;padding:4px 10px;font:inherit;cursor:pointer;touch-action:manipulation}
+#hint{display:none}body.playing #hint{display:inline}
+#pad,#act{display:none}
+@media (pointer:coarse){
+ html,body,canvas,#ui,#ui *{touch-action:manipulation}
+ html,body{overflow:hidden;height:100%}
+ #pad button,#act button{touch-action:none}
+ canvas{margin:calc(6px + env(safe-area-inset-top)) auto 4px;width:min(100vw,calc(82vh*1.6667))}
+ #hint{display:none!important}
+ #ui button{padding:10px 14px;font-size:14px}
+ #pad{display:grid;grid-template-columns:repeat(3,58px);grid-template-rows:repeat(3,58px);gap:4px;position:fixed;left:calc(14px + env(safe-area-inset-left));bottom:calc(16px + env(safe-area-inset-bottom));z-index:5}
+ #pad button{width:58px;height:58px;padding:0;font-size:22px;border-radius:14px;background:rgba(40,28,64,.72);border-color:#8a7aa8;opacity:.9}
+ #pad button.on{background:rgba(120,80,190,.9)}
+ #pad .u{grid-column:2;grid-row:1}#pad .l{grid-column:1;grid-row:2}#pad .r{grid-column:3;grid-row:2}#pad .d{grid-column:2;grid-row:3}
+ #act{display:block;position:fixed;right:calc(22px + env(safe-area-inset-right));bottom:calc(40px + env(safe-area-inset-bottom));z-index:5}
+ #act button{width:84px;height:84px;border-radius:50%;font-size:30px;font-weight:bold;background:rgba(150,60,110,.78);border-color:#ffb0d8;padding:0}
+}
+@media (pointer:coarse) and (orientation:landscape){
+ canvas{margin:2px auto 0;width:min(calc(100vw - 380px),calc(96vh*1.6667))}
+ #ui{position:fixed;top:2px;right:4px;padding:0;gap:6px;z-index:6}#ui label{display:none}#ui button{padding:4px 8px;font-size:11px;opacity:.6}
+ #pad{grid-template-columns:repeat(3,50px);grid-template-rows:repeat(3,50px);bottom:calc(10px + env(safe-area-inset-bottom))}
+ #pad button{width:50px;height:50px}
+ #act button{width:76px;height:76px}#act{bottom:calc(24px + env(safe-area-inset-bottom))}
+}
